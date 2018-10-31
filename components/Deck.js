@@ -8,6 +8,7 @@ class Deck extends Component {
 
     return (
       <View>
+        // Add Quiz button and Add Card button
         <Text>Deck</Text>
       </View>
     )

@@ -4,6 +4,7 @@ import Deck from './components/Deck';
 import Card from './components/Card';
 import AddDeck from './components/AddDeck';
 import AddCard from './components/AddCard';
+import DeckList from './components/DeckList';
 import Home from './components/Home';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
@@ -21,8 +22,8 @@ function AppStatusBar ({backgroundColor, ...props}) {
 }
 
 const Tabs = createBottomTabNavigator({
-  Home: {
-    screen: Home,
+  DeckList: {
+    screen: DeckList,
     navigationOptions: {
       tabBarLabel: 'Home',
       tabBarIcon: ({ tintColor }) => <Ionicons name='ios-home' size={30} color={tintColor} />
