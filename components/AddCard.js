@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { View, Text } from 'react-native'
-import { submitCard } from '../utils/api'
+import { saveNewCardToDeck } from '../utils/api'
 import { timeToString } from '../utils/helpers'
 import { addCard } from '../actions'
 
@@ -9,19 +9,21 @@ class AddCard extends Component {
 
 
   submit = () => {
-    const key = timeToString()
-    const card = this.state
+
+    const title = this.props.navigation.state.params.item.title;
+    const card = { question: this.state.question, answer: this.state.answer };
+    // const title = deck title
 
     // Update Redux
-    this.props.dispatch(addCard({
-      [key]: entry
-    }))
-
-    // Route to home
-    this.toHome()
+    this.props.dispatch(addCard(title, card))
 
     // Save to "DB"
-    submitCard({ key, entry })
+    saveNewCardToDeck(title, card)
+
+    // Route to Deck page
+    this.props.navigation.navigate('Deck', {
+      title: title
+    });
 
     // Clear local notification
   }

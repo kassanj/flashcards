@@ -8,19 +8,21 @@ import { addDeck } from '../actions'
 class AddDeck extends Component {
 
   submit = () => {
-    const key = timeToString()
-    const deck = this.state
+
+    const { title } = this.state
 
     // Update Redux
     this.props.dispatch(addDeck({
-      [key]: entry
+      [title]: { title: title, questions:[] }
     }))
 
-    // Route to home
-    this.toHome()
-
     // Save to "DB"
-    submitDeck({ key, entry })
+    saveNewDeck(title)
+
+    // Route to Deck page
+    this.props.navigation.navigate('Deck', {
+      title: title
+    });
 
     // Clear local notification
   }
