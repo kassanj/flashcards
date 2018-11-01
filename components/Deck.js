@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { View, Text, Button, FlatList } from 'react-native'
 import { connect } from 'react-redux';
 import navigationOptions from 'react-navigation';
-import { clearLocalNotification, setLocalNotification } from '../utils/helpers'
+import { clearLocalNotification, setLocalNotification } from '../utils/notifications'
 
 
 class Deck extends Component {
