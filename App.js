@@ -17,7 +17,7 @@ import Quiz from './components/Quiz';
 import Home from './components/Home';
 
 // Utilities
-import { Plus } from './utils/styles';
+import { PlusSymbol } from './utils/styles';
 import { setLocalNotification } from './utils/notifications';
 
 
@@ -58,7 +58,7 @@ DeckList.navigationOptions = ({ navigation }) => ({
         navigation.navigate('AddDeck');
       }}
     >
-      <Plus>+</Plus>
+      <PlusSymbol>+</PlusSymbol>
     </TouchableOpacity>
   )
 });

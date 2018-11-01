@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
-import { View, Text, TouchableOpacity, FlatList } from 'react-native'
+import { FlatList } from 'react-native'
 import { connect } from 'react-redux';
 import navigationOptions from 'react-navigation';
 import { getDecks } from '../utils/api';
 import { receiveDecks } from '../actions';
+import { PageContainer, DeckButton, ButtonTitle } from '../utils/styles';
 
 
 class DeckList extends Component {
@@ -13,27 +14,24 @@ class DeckList extends Component {
   }
 
   render() {
-
     return (
-      <View>
-        // Loop through Decks
-        <Text>Deck List</Text>
+      <PageContainer>
           <FlatList
             data={Object.values(this.props.allDecks)}
             renderItem={({item}) =>
-            <TouchableOpacity
-              onPress={() => {
-                this.props.navigation.navigate('Deck', {
-                  title: item.title
-                });
-              }}
-            >
-              <Text>{item.title}</Text>
-           </TouchableOpacity>
+              <DeckButton
+                onPress={() => {
+                  this.props.navigation.navigate('Deck', {
+                    title: item.title
+                  });
+                }}
+              >
+                <ButtonTitle>{item.title}</ButtonTitle>
+              </DeckButton>
            }
            keyExtractor={item => item.title}
           />
-      </View>
+      </PageContainer>
     )
   }
 }

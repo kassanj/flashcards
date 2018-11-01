@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import { View, Text, Button, FlatList } from 'react-native'
 import { connect } from 'react-redux';
 import navigationOptions from 'react-navigation';
 import { clearLocalNotification, setLocalNotification } from '../utils/notifications'
+import { PageContainer, Title, TitleBox, Subtext, Button, ButtonTitle } from '../utils/styles';
 
 
 class Deck extends Component {
@@ -15,31 +15,20 @@ class Deck extends Component {
     const { item } = this.props;
 
     return (
-      <View>
-        <Text>{ item.title }</Text>
-        <View>
-          <Text>{ item.questions.length } Questions</Text>
-          <FlatList
-             data={item.questions}
-             renderItem={({item}) =>
-               <View>
-                 <Text>{item.question}</Text>
-               </View>
-               }
-             keyExtractor={item => item.question}
-           />
-         </View>
+        <PageContainer>
+          <TitleBox>
+            <Title>{ item.title }</Title>
+            <Subtext>{ item.questions.length } Questions</Subtext>
+          </TitleBox>
           <Button
-            onPress={() => {
-              this.props.navigation.navigate('AddCard', {
-                 item: item
-               });
-             }}
-            title="Add Question"
-            color="#841584"
-            accessibilityLabel="Learn more about this purple button"
-          />
-
+              onPress={() => {
+                this.props.navigation.navigate('AddCard', {
+                   item: item
+                 });
+               }}
+            >
+            <ButtonTitle>Add Card</ButtonTitle>
+          </Button>
           <Button
             onPress={() => {
               clearLocalNotification().then(setLocalNotification);
@@ -47,12 +36,10 @@ class Deck extends Component {
                  item: item
                });
              }}
-            title="Start Quiz"
-            color="#841584"
-            accessibilityLabel="Learn more about this purple button"
-          />
-
-      </View>
+          >
+          <ButtonTitle>Start a Quiz</ButtonTitle>
+         </Button>
+      </PageContainer>
     )
   }
 }
