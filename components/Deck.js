@@ -18,6 +18,7 @@ class Deck extends Component {
       <View>
         <Text>{ item.title }</Text>
         <View>
+          <Text>{ item.questions.length } Questions</Text>
           <FlatList
              data={item.questions}
              renderItem={({item}) =>
