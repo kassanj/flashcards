@@ -3,14 +3,15 @@ import { starterData } from './data.js'
 
 const DECK_STORAGE_KEY = 'MobileFlashcards:dataset'
 
+// set starter data on componentDidMount() in DeckList component
 export function getDecks() {
   // AsyncStorage.removeItem(DECK_STORAGE_KEY); // uncomment this line to reset AsyncStorage DECK_STORAGE_KEY
   return AsyncStorage.getItem(DECK_STORAGE_KEY).then(results => {
-      if(results === null){
+      if (results === null) {
           AsyncStorage.setItem(DECK_STORAGE_KEY, JSON.stringify(starterData));
           return starterData;
       }
-      else{
+      else {
           return JSON.parse(results)
       }
   });
