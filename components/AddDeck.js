@@ -1,11 +1,15 @@
-import React, { Component } from 'react'
-import { View, Text } from 'react-native'
-import { submitDeck } from '../utils/api'
-import { timeToString } from '../utils/helpers'
-import { addDeck } from '../actions'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { View, Text, TextInput, TouchableOpacity } from 'react-native';
+import navigationOptions from 'react-navigation';
+
+import { saveNewDeck } from '../utils/api';
+import { timeToString } from '../utils/helpers';
+import { addDeck } from '../actions';
 
 
 class AddDeck extends Component {
+  state = { title: '' };
 
   submit = () => {
 
@@ -20,7 +24,7 @@ class AddDeck extends Component {
     saveNewDeck(title)
 
     // Route to Deck page
-    this.props.navigation.navigate('Deck', {
+    this.props.navigation.navigate('DeckList', {
       title: title
     });
 
@@ -32,10 +36,16 @@ class AddDeck extends Component {
     return (
       <View>
         // Add title input and 'Create Deck' button
-        <Text>Add Deck</Text>
+      <TextInput
+         onChangeText={(title) => this.setState({ title })}
+         value={this.state.title}
+       />
+      <TouchableOpacity onPress={this.submit}>
+          <Text style={{color:'blue'}}>Create Deck</Text>
+      </TouchableOpacity>
       </View>
     )
   }
 }
 
-export default AddDeck
+export default connect()(AddDeck);
