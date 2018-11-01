@@ -1,18 +1,63 @@
 import React, { Component } from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, Button, FlatList } from 'react-native'
+import { connect } from 'react-redux';
+import navigationOptions from 'react-navigation';
 
 
 class Deck extends Component {
 
+  static navigationOptions = {
+    title: 'Deck'
+  };
+
   render() {
+    const { item } = this.props;
 
     return (
       <View>
-        // Add Quiz button and Add Card button
-        <Text>Deck</Text>
+        <Text>{ item.title }</Text>
+        <View>
+          <FlatList
+             data={item.questions}
+             renderItem={({item}) =>
+               <View>
+                 <Text>{item.question}</Text>
+               </View>
+               }
+             keyExtractor={item => item.question}
+           />
+         </View>
+          <Button
+            onPress={() => {
+              this.props.navigation.navigate('AddCard', {
+                 item: item
+               });
+             }}
+            title="Add Question"
+            color="#841584"
+            accessibilityLabel="Learn more about this purple button"
+          />
+
+          <Button
+            onPress={() => {
+              this.props.navigation.navigate('Quiz', {
+                 item: item
+               });
+             }}
+            title="Start Quiz"
+            color="#841584"
+            accessibilityLabel="Learn more about this purple button"
+          />
+
       </View>
     )
   }
 }
 
-export default Deck
+const mapStateToProps = (state, { navigation }) => {
+  const title = navigation.state.params.title;
+
+  return { item: state.decks[title] || {} };
+};
+
+export default connect(mapStateToProps)(Deck);
