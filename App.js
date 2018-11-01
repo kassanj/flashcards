@@ -1,6 +1,13 @@
 import React from 'react';
 import { View, StyleSheet, Text, Platform, StatusBar, TouchableOpacity } from 'react-native';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import reducer from './reducers';
+import { createBottomTabNavigator, createStackNavigator, navigationOptions } from 'react-navigation';
+import { FontAwesome, Ionicons } from '@expo/vector-icons';
+import { Constants } from 'expo';
 
+// Components
 import Deck from './components/Deck';
 import Card from './components/Card';
 import AddDeck from './components/AddDeck';
@@ -9,14 +16,10 @@ import DeckList from './components/DeckList';
 import Quiz from './components/Quiz';
 import Home from './components/Home';
 
-import { createStore } from 'redux';
-import { Provider } from 'react-redux';
-import reducer from './reducers';
-import { createBottomTabNavigator, createStackNavigator, navigationOptions } from 'react-navigation';
-import { FontAwesome, Ionicons } from '@expo/vector-icons';
-import { Constants } from 'expo';
-
+// Utilities
 import { Plus } from './utils/styles';
+import { setLocalNotification } from './utils/notifications';
+
 
 function AppStatusBar ({backgroundColor, ...props}) {
   return (
@@ -62,6 +65,9 @@ DeckList.navigationOptions = ({ navigation }) => ({
 
 
 export default class App extends React.Component {
+  componentDidMount() {
+    setLocalNotification();
+  }
   render() {
     return (
       <Provider store={createStore(reducer)}>

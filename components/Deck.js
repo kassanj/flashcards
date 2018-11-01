@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { View, Text, Button, FlatList } from 'react-native'
 import { connect } from 'react-redux';
 import navigationOptions from 'react-navigation';
+import { clearLocalNotification, setLocalNotification } from '../utils/helpers'
 
 
 class Deck extends Component {
@@ -40,6 +41,7 @@ class Deck extends Component {
 
           <Button
             onPress={() => {
+              clearLocalNotification().then(setLocalNotification);
               this.props.navigation.navigate('Quiz', {
                  item: item
                });
