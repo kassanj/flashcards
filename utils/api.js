@@ -1,11 +1,19 @@
 import { AsyncStorage } from 'react-native'
+import { starterData } from './data.js'
 
 const DECK_STORAGE_KEY = 'MobileFlashcards:dataset'
 
-// getItem
 export function getDecks() {
-  //AsyncStorage.removeItem(DECK_STORAGE_KEY); // uncomment this line to reset AsyncStorage DECK_STORAGE_KEY
-  return AsyncStorage.getItem(DECK_STORAGE_KEY);
+  // AsyncStorage.removeItem(DECK_STORAGE_KEY); // uncomment this line to reset AsyncStorage DECK_STORAGE_KEY
+  return AsyncStorage.getItem(DECK_STORAGE_KEY).then(results => {
+      if(results === null){
+          AsyncStorage.setItem(DECK_STORAGE_KEY, JSON.stringify(starterData));
+          return starterData;
+      }
+      else{
+          return JSON.parse(results)
+      }
+  });
 }
 
 // getItem

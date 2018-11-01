@@ -9,9 +9,7 @@ import { receiveDecks } from '../actions';
 class DeckList extends Component {
 
   componentDidMount() {
-    getDecks().then(decks =>
-      this.props.dispatch(receiveDecks(JSON.parse(decks)))
-    );
+    getDecks().then(decks => this.props.dispatch(receiveDecks(decks)));
   }
 
   render() {
