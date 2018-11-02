@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import navigationOptions from 'react-navigation';
-
 import { saveNewDeck } from '../utils/api';
-import { timeToString } from '../utils/helpers';
 import { addDeck } from '../actions';
 import { PageContainer, Input, Button, ButtonTitle } from '../utils/styles';
 
@@ -32,9 +30,10 @@ class AddDeck extends Component {
         <Input
            onChangeText={(title) => this.setState({ title })}
            value={this.state.title}
+           placeholder='Title'
          />
        <Button onPress={this.submit}>
-          <ButtonTitle style={{color:'blue'}}>Create Deck</ButtonTitle>
+          <ButtonTitle>Create Deck</ButtonTitle>
         </Button>
       </PageContainer>
     )

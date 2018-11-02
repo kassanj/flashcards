@@ -1,17 +1,17 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import navigationOptions from 'react-navigation';
-
 import { addCard } from '../actions'
-
 import { saveNewCardToDeck } from '../utils/api'
-import { timeToString } from '../utils/helpers'
 import { PageContainer, Input, Button, ButtonTitle } from '../utils/styles';
 
 
 class AddCard extends Component {
 
-  state = { question: '', answer: '' };
+  state = {
+      question: '',
+      answer: ''
+  };
 
   submit = () => {
     const title = this.props.navigation.state.params.item.title;
