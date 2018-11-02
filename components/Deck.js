@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import navigationOptions from 'react-navigation';
 import { clearLocalNotification, setLocalNotification } from '../utils/notifications'
-import { PageContainer, Title, TitleBox, Subtext, Button, ButtonTitle } from '../utils/styles';
+import { PageContainer, Title, TitleBox, SubText, Button, ButtonTitle } from '../utils/styles';
 
 
 class Deck extends Component {
@@ -18,7 +18,7 @@ class Deck extends Component {
         <PageContainer>
           <TitleBox>
             <Title>{ item.title }</Title>
-            <Subtext>{ item.questions.length } Questions</Subtext>
+            <SubText>{ item.questions.length } Questions</SubText>
           </TitleBox>
           <Button
               onPress={() => {
