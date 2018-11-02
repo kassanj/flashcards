@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, Text, Platform, StatusBar, TouchableOpacity } from 'react-native';
+import { View, Platform, StatusBar, TouchableOpacity } from 'react-native';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import reducer from './reducers';
@@ -9,12 +9,10 @@ import { Constants } from 'expo';
 
 // Components
 import Deck from './components/Deck';
-import Card from './components/Card';
 import AddDeck from './components/AddDeck';
 import AddCard from './components/AddCard';
 import DeckList from './components/DeckList';
 import Quiz from './components/Quiz';
-import Home from './components/Home';
 
 // Utilities
 import { PlusSymbol } from './utils/styles';
@@ -65,6 +63,7 @@ DeckList.navigationOptions = ({ navigation }) => ({
 
 
 export default class App extends React.Component {
+
   componentDidMount() {
     setLocalNotification();
   }
@@ -80,12 +79,3 @@ export default class App extends React.Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
