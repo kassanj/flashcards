@@ -3,7 +3,6 @@ import styled from 'styled-components';
 export const PlusSymbol = styled.Text`
   color: gray;
   margin-right: 15;
-  padding-bottom: 50;
   font-size: 36;
 `;
 
