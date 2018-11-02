@@ -9,3 +9,5 @@ $ cd flashcards
 $ yarn install
 $ yarn start
 ```
+
+Tested on iPhone 8 (Device), iPhone X (Emulator) and Android (Emulator)
